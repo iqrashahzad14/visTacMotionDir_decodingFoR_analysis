@@ -1,0 +1,51 @@
+{
+  "Name": "handUp",
+  "Description": "contrasts for the handUp dataset",
+  "Input": {
+    "task": "handUp"
+  },
+  "Steps": [
+    {
+      "Level": "run",
+      "Model": {
+        "X": [
+          "trial_type.handUp_pinkyThumb",
+          "trial_type.handUp_fingerWrist",
+          "trans_x", "trans_y", "trans_z", "rot_x", "rot_y", "rot_z"
+        ]
+      },
+      "AutoContrasts": [
+        "trial_type.handUp_pinkyThumb",
+        "trial_type.handUp_fingerWrist"]
+    },
+    
+    {
+      "Level": "subject",
+      "AutoContrasts": [
+        "trial_type.handUp_pinkyThumb",
+        "trial_type.handUp_fingerWrist"],
+      "Contrasts": [
+        {
+          "Name": "handUp_pT_gt_fW",
+          "ConditionList": [
+            "trial_type.handUp_pinkyThumb", "trial_type.handUp_fingerWrist"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "handUp_fW_gt_pT",
+          "ConditionList": [
+            "trial_type.handUp_pinkyThumb", "trial_type.handUp_fingerWrist"
+          ],
+          "weights": [-1, 1],
+          "type": "t"
+        } 
+      ]
+    },
+    {
+      "Level": "dataset",
+      "AutoContrasts": ["trial_type.handUp_vertical", "trial_type.handUp_fingerWrist",  "handUp_pT_gt_fW", "handUp_fW_gt_pT"]
+    }
+  ]
+}

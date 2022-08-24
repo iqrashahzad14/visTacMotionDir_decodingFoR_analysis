@@ -1,0 +1,51 @@
+{
+  "Name": "handDown",
+  "Description": "contrasts for the handDown dataset",
+  "Input": {
+    "task": "handDown"
+  },
+  "Steps": [
+    {
+      "Level": "run",
+      "Model": {
+        "X": [
+          "trial_type.handDown_pinkyThumb",
+          "trial_type.handDown_fingerWrist",
+          "trans_x", "trans_y", "trans_z", "rot_x", "rot_y", "rot_z"
+        ]
+      },
+      "AutoContrasts": [
+        "trial_type.handDown_pinkyThumb",
+        "trial_type.handDown_fingerWrist"]
+    },
+    
+    {
+      "Level": "subject",
+      "AutoContrasts": [
+        "trial_type.handDown_pinkyThumb",
+        "trial_type.handDown_fingerWrist"],
+      "Contrasts": [
+        {
+          "Name": "handDown_pT_gt_fW",
+          "ConditionList": [
+            "trial_type.handDown_pinkyThumb", "trial_type.handDown_fingerWrist"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "handDown_fW_gt_pT",
+          "ConditionList": [
+            "trial_type.handDown_pinkyThumb", "trial_type.handDown_fingerWrist"
+          ],
+          "weights": [-1, 1],
+          "type": "t"
+        } 
+      ]
+    },
+    {
+      "Level": "dataset",
+      "AutoContrasts": ["trial_type.handDown_pinkyThumb", "trial_type.handDown_fingerWrist",  "handDown_pT_gt_fW", "handDown_fW_gt_pT"]
+    }
+  ]
+}

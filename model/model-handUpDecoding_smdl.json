@@ -1,0 +1,22 @@
+{
+  "Name": "handUp",
+  "Description": "contrasts for the handUp dataset",
+  "Input": {
+    "task": "handUp"
+  },
+  "Steps": [
+    {
+      "Level": "run",
+      "Model": {
+        "X": [
+          "trial_type.handUp_pinkyThumb",
+          "trial_type.handUp_fingerWrist",
+          "trans_x", "trans_y", "trans_z", "rot_x", "rot_y", "rot_z"
+        ]
+      },
+      "AutoContrasts": [
+        "trial_type.handUp_pinkyThumb",
+        "trial_type.handUp_fingerWrist"]
+    }
+  ]
+}
